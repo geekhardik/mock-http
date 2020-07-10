@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var fs = require('fs');
 var https = require('https');
+var http = require('http');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -45,9 +46,14 @@ const options = {
   cert: fs.readFileSync('server.cert')
 };
 
-https.createServer(options, app)
+http.createServer(app)
 .listen(3000, function () {
-  console.log('mock-http server is listening on port 3000! Go to https://localhost:3000/')
+  console.log('mock-http server is listening on port 3000! Go to http://localhost:3000/')
 })
+
+// https.createServer(options, app)
+// .listen(3000, function () {
+//   console.log('mock-http server is listening on port 3000! Go to https://localhost:3000/')
+// })
 
 module.exports = app;
